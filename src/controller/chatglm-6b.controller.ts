@@ -1,7 +1,7 @@
 import { Inject, Controller, Post, Body } from '@midwayjs/core';
 import { Context } from '@midwayjs/koa';
 import { HumanChatMessage } from 'langchain/schema';
-import { ChatGlm6BLLM } from '../llm/chatglm-6b';
+import { ChatGlm6BLLM } from '../chat_model/chatglm-6b';
 import { UserService } from '../service/user.service';
 
 @Controller('/chatglm')
