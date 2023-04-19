@@ -3,13 +3,13 @@ import { HNSWLib } from 'langchain/vectorstores/hnswlib';
 import { OpenAIEmbeddings } from 'langchain/embeddings/openai';
 import { TextLoader } from 'langchain/document_loaders/fs/text';
 import { RetrievalQAChain, loadQARefineChain } from 'langchain/chains';
-import { ChatGlm6BLLM } from '../llm/chatglm-6b';
-import { OpenAI } from "langchain/llms/openai";
+import { ChatGlm6BLLm } from '../llm/chatglm_6b_llm';
+import { OpenAI } from 'langchain/llms/openai';
 @Provide()
 export class MainService {
   async run() {
     // Create docs with a loader
-    const model = new ChatGlm6BLLM({});
+    const model = new ChatGlm6BLLm({});
     const loader = new TextLoader(
       'src/document_loaders/example_data/example.txt'
     );

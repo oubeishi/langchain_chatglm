@@ -4,7 +4,6 @@ import { BaseChatMessage, ChatResult } from 'langchain/dist/schema';
 import { AIChatMessage } from 'langchain/schema';
 export class ChatGlm6BLLM extends BaseChatModel {
   modelName: 'chatglm';
-  name: 'chatglm';
   // prompt: string;
   temperature: number;
   max_length: number;
@@ -32,7 +31,6 @@ export class ChatGlm6BLLM extends BaseChatModel {
       value: 0.7,
     });
     this.modelName = 'chatglm';
-    this.name = 'chatglm';
     this.temperature = fields?.temperature ?? this.temperature;
     this.max_length = fields?.max_length ?? this.max_length;
     this.top_p = fields?.top_p ?? this.top_p;
