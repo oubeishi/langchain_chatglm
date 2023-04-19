@@ -1,12 +1,7 @@
 import { BaseLLM } from 'langchain/llms/base';
 import axios from 'axios';
-import {
-  AIChatMessage,
-  BaseChatMessage,
-  ChatResult,
-  LLMResult,
-} from 'langchain/schema';
-import { chunkArray } from 'langchain/dist/util/chunk';
+import { LLMResult } from 'langchain/schema';
+
 export class ChatGlm6BLLm extends BaseLLM {
   modelName: 'chatglm';
   // prompt: string;
@@ -76,6 +71,9 @@ export class ChatGlm6BLLm extends BaseLLM {
   }
   async _generate(prompts: string[], stop?: string[]): Promise<LLMResult> {
     console.log('prompts ', prompts);
+    console.log('stop ', stop);
+
+    return prompts as any;
   }
   async completionWithRetry(request) {
     console.log('request ', request);
@@ -92,9 +90,7 @@ export class ChatGlm6BLLm extends BaseLLM {
       return res.data;
     });
   }
-  _llmType() {
-    return 'chatglm';
-  }
+
   _combineLLMOutput(...llmOutputs) {
     return llmOutputs.reduce(
       (acc, llmOutput) => {
@@ -114,6 +110,9 @@ export class ChatGlm6BLLm extends BaseLLM {
         },
       }
     );
+  }
+  _llmType() {
+    return 'chatglm';
   }
 }
 function getAnthropicPromptFromMessage(type) {

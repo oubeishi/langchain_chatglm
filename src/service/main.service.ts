@@ -1,10 +1,10 @@
 import { Provide } from '@midwayjs/core';
-//import { HNSWLib } from 'langchain/vectorstores/hnswlib';
-//import { OpenAIEmbeddings } from 'langchain/embeddings/openai';
+import { HNSWLib } from 'langchain/vectorstores/hnswlib';
+import { OpenAIEmbeddings } from 'langchain/embeddings/openai';
 import { TextLoader } from 'langchain/document_loaders/fs/text';
-import { RetrievalQAChain, loadQARefineChain } from 'langchain/chains';
+import { RetrievalQAChain } from 'langchain/chains';
 import { ChatGlm6BLLm } from '../llm/chatglm_6b_llm';
-import { OpenAI } from 'langchain/llms/openai';
+// import { OpenAI } from 'langchain/llms/openai';
 @Provide()
 export class MainService {
   async run() {
@@ -17,27 +17,27 @@ export class MainService {
     const docs = await loader.load();
     console.log({ docs });
     // Load the docs into the vector store
-    /* const vectorStore = await HNSWLib.fromDocuments(
-      docs,
-      new OpenAIEmbeddings()
-    );
+    // const vectorStore = await HNSWLib.fromDocuments(
+    //   docs,
+    //   new OpenAIEmbeddings()
+    // );
     const directory = 'your/directory/here';
-    await vectorStore.save(directory); */
+    // await vectorStore.save(directory);
 
     // Load the vector store from the same directory
-    /* const loadedVectorStore = await HNSWLib.load(
+    const loadedVectorStore = await HNSWLib.load(
       directory,
       new OpenAIEmbeddings()
-    ); */
+    );
     // Search for the most similar document
-    /* const chain = RetrievalQAChain.fromLLM(
+    const chain = RetrievalQAChain.fromLLM(
       model,
       loadedVectorStore.asRetriever()
-    ); */
-    /*  const res = await chain.call({
+    );
+    const res = await chain.call({
       query: 'What did the president say about Justice Breyer?',
     });
-    console.log({ res }); */
+    console.log({ res });
     /* const result = await loadedVectorStore.similaritySearch('hello world', 1);
     console.log(result); */
   }
